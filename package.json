@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm install -g concurrently && cd client/src && npm install --only=dev && npm install && npm run build",
-    "start": "concurrently --kill-others \"cd client && yarn start\" \"nodemon index.js\""
+    "start": "concurrently --kill-others \"cd client && npm start\" \"nodemon index.js\""
   },
   "keywords": [],
   "author": "",
