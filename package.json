@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "cd client/src && npm install --only=dev && npm install && npm run build",
-    "start": "concurrently \"cd client && yarn start\" \"yarn start\""
+    "start": "concurrently --kill-others \"cd client && yarn start\" \"nodemon index.js\""
   },
   "keywords": [],
   "author": "",
@@ -38,6 +38,6 @@
     "passport": "latest",
     "passport-google-oauth": "latest",
     "express-session": "latest",
-    "concurrently":"latest"
+    "concurrently": "latest"
   }
 }
