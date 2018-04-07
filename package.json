@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js && cd client/src && npm install",
-    "heroku-postbuild": "cd client/src && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client/src && npm install --only=dev && npm install && npm run build",
+    "start": "concurrently \"cd client && yarn start\" \"yarn start\""
   },
   "keywords": [],
   "author": "",
@@ -37,6 +37,7 @@
     "nodemon": "^1.9.2",
     "passport": "latest",
     "passport-google-oauth": "latest",
-    "express-session": "latest"
+    "express-session": "latest",
+    "concurrently":"latest"
   }
 }
