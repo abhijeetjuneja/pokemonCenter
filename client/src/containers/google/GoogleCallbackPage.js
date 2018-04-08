@@ -8,7 +8,11 @@ class GoogleCallbackPage extends React.Component {
     console.log(this.props);
     var url = this.props.location.pathname + this.props.location.search;
     this.props.googleCallbackRequest(url).then((res) =>{
-      console.log("done");
+      if(res.data.error)
+      this.props.router.push('/googleerror');
+      else {
+        this.props.router.push('/google/'+res.data.token);
+      }
     });
   }
   render() {

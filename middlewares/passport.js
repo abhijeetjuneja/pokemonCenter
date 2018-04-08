@@ -57,8 +57,8 @@ module.exports = function(app,passport){
 
     //Google callback function
     app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: '/googleerror' }),function(req, res) {
-            res.redirect('/google/'+token);
+        passport.authenticate('google', { failureRedirect: res.json({error : true}) }),function(req, res) {
+            res.json({error:false,token:token});
     });
 
 
