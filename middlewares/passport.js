@@ -37,7 +37,7 @@ module.exports = function(app,passport){
     passport.use(new GoogleStrategy({
         clientID: '364667810129-vnpctakl7m14q8hr40q6flkbql8u6bim.apps.googleusercontent.com',
         clientSecret: '7qyqKMZhTu9LqZb1SdCrHZzJ',
-        callbackURL: "https://pokemon-center.herokuapp.com/auth/google/callback"
+        callbackURL: "https://localhost:8000/auth/google/callback"
       },
       function(accessToken, refreshToken, profile, done) {
         console.log(profile);
