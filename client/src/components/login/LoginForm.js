@@ -89,31 +89,31 @@ class LoginForm extends React.Component {
             <h2>Login to Pokemon Center!</h2><br></br>
           </div>
 
+          <div style={{margin:'0px 30px'}}>
+            { errors.form && <div className="alert alert-danger">{errors.form}</div> }
 
-          { errors.form && <div className="alert alert-danger">{errors.form}</div> }
+            <TextFieldGroup
+              field="identifier"
+              label="Username / Email"
+              value={identifier}
+              error={errors.identifier}
+              onChange={this.onChange}
+            />
 
-          <TextFieldGroup
-            field="identifier"
-            label="Username / Email"
-            value={identifier}
-            error={errors.identifier}
-            onChange={this.onChange}
-          />
+            <TextFieldGroup
+              field="password"
+              label="Password"
+              value={password}
+              error={errors.password}
+              onChange={this.onChange}
+              type="password"
+            />
+          </div>
 
-          <TextFieldGroup
-            field="password"
-            label="Password"
-            value={password}
-            error={errors.password}
-            onChange={this.onChange}
-            type="password"
-          />
 
         <br></br><div className="form-group"><button className="btn btn-primary btn-lg" disabled={isLoading}>Login</button></div>
         </form>
-        <br></br><button disabled={this.state.isLoading || this.state.invalid} onClick={this.google} className="btn btn-warning btn-lg">
-          Google +
-        </button>
+        <br></br>
         <GoogleLogin
           clientId="364667810129-vnpctakl7m14q8hr40q6flkbql8u6bim.apps.googleusercontent.com"
           buttonText="Login With Google+"

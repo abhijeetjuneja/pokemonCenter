@@ -159,9 +159,6 @@ class SignupForm extends React.Component {
 
           </div>
         </form>
-        <br></br><a href="/auth/google"><button disabled={this.state.isLoading || this.state.invalid} className="btn btn-warning btn-lg">
-          Google +
-        </button></a>
       </div>
     );
   }
