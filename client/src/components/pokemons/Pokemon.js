@@ -59,7 +59,6 @@ class Pokemon extends React.Component {
       return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
   componentDidMount(){
-
     this.setState({favourite : this.props.children[11]});
     this.props.children[3](this.props.children[5]).then((res) => {
 
@@ -68,10 +67,8 @@ class Pokemon extends React.Component {
     });
   }
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
-    this.setState({favourite : nextProps.children[11]});
+    this.setState({favourite : nextProps.children[11],isLoading : true});
     nextProps.children[3](nextProps.children[5]).then((res) => {
-      console.log(res.data);
       this.setState({pokemon : res.data,isLoading : false});
       this.setColor(res.data.types);
     });
