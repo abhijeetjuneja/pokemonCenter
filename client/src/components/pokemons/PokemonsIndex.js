@@ -81,7 +81,7 @@ class PokemonIndex extends React.Component {
     offset = offset - this.state.limit;
     this.setState({offset : offset,isLoading:true});
     this.props.getPokemonsRequest(offset,this.state.limit).then(res => {
-      this.setState({pokemons:res.data.results,next:res.data.next}).then(() => {
+      this.setState({pokemons:res.data.results,next:res.data.next},() => {
         this.setState({isLoading : false});
       });;
     });
@@ -92,7 +92,7 @@ class PokemonIndex extends React.Component {
     offset = offset + this.state.limit;
     this.setState({offset : offset,isLoading:true});
     this.props.getPokemonsRequest(offset,this.state.limit).then(res => {
-      this.setState({pokemons:res.data.results,next:res.data.next}).then(() => {
+      this.setState({pokemons:res.data.results,next:res.data.next},() => {
         this.setState({isLoading : false});
       });;
     });
@@ -102,7 +102,7 @@ class PokemonIndex extends React.Component {
     var matchedPokemons = v.filter((v) => {
       return v['name'].startsWith(this.state.searchFilter);
     });
-    this.setState({pokemons:matchedPokemons,next:next}).then(() => {
+    this.setState({pokemons:matchedPokemons,next:next},() => {
       this.setState({isLoading : false});
     });
   }
@@ -111,7 +111,7 @@ class PokemonIndex extends React.Component {
     this.setState({ [e.target.name]: e.target.value ,isLoading : true});
     if(e.target.value == ''){
       this.props.getPokemonsRequest(0,this.state.limit).then(res => {
-        this.setState({pokemons:res.data.results,next:res.data.next}).then(() => {
+        this.setState({pokemons:res.data.results,next:res.data.next},() => {
           this.setState({isLoading : false});
         });;
       });
