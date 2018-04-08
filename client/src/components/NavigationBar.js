@@ -36,9 +36,9 @@ class NavigationBar extends React.Component {
           <div className="navbar-header">
             <button type="button" style={{backgroundColor:'transparent',color:'white'}} className="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
                <span className="sr-only">Toggle navigation</span>
-               <span className="icon-bar"></span>
-               <span className="icon-bar"></span>
-               <span className="icon-bar"></span>
+               <span className="icon-bar" style={{backgroundColor:'white'}}></span>
+               <span className="icon-bar" style={{backgroundColor:'white'}}></span>
+               <span className="icon-bar" style={{backgroundColor:'white'}}></span>
             </button>
             <Link to="/" className="navbar-brand" style={{backgroundColor:'transparent',color:'white'}}>Pokemon Center</Link>
           </div>
