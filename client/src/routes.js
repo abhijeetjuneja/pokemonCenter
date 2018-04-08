@@ -9,6 +9,7 @@ import PokemonsPage from './containers/pokemons/PokemonsPage';
 import ProfilePage from './containers/profile/ProfilePage';
 import GoogleLoginPage from './containers/google/GoogleLoginPage';
 import GoogleErrorPage from './containers/google/GoogleErrorPage';
+import GoogleCallbackPage from './containers/google/GoogleCallbackPage';
 import Auth from './utils/Auth';
 
 export default (
@@ -20,6 +21,7 @@ export default (
       <Route path="pokemons" component={Auth(PokemonsPage)} auth={true}/>
       <Route path="me" component={Auth(ProfilePage)} auth={true}/>
       <Route path="google/:token" component={GoogleLoginPage} />
+      <Route path="auth/google/callback" component={GoogleCallbackPage} />
       <Route path="googleerror" component={GoogleErrorPage} />
     </Route>
 

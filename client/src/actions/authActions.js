@@ -29,6 +29,12 @@ export function login(data) {
   }
 }
 
+export function googleCallbackRequest(url) {
+    return dispatch => {
+      return axios.get(url);
+    }
+}
+
 export function googleLoginRequest() {
     return dispatch => {
       return axios.get(`/auth/google`);
