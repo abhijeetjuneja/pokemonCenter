@@ -81,9 +81,7 @@ class PokemonIndex extends React.Component {
     offset = offset - this.state.limit;
     this.setState({offset : offset,isLoading:true});
     this.props.getPokemonsRequest(offset,this.state.limit).then(res => {
-      this.setState({pokemons:res.data.results,next:res.data.next},() => {
-        this.setState({isLoading : false});
-      });;
+      this.setState({pokemons:res.data.results,next:res.data.next,isLoading : false});
     });
   }
 
@@ -92,9 +90,7 @@ class PokemonIndex extends React.Component {
     offset = offset + this.state.limit;
     this.setState({offset : offset,isLoading:true});
     this.props.getPokemonsRequest(offset,this.state.limit).then(res => {
-      this.setState({pokemons:res.data.results,next:res.data.next},() => {
-        this.setState({isLoading : false});
-      });;
+      this.setState({pokemons:res.data.results,next:res.data.next,isLoading : false});
     });
   }
 
@@ -102,18 +98,14 @@ class PokemonIndex extends React.Component {
     var matchedPokemons = v.filter((v) => {
       return v['name'].startsWith(this.state.searchFilter);
     });
-    this.setState({pokemons:matchedPokemons,next:next},() => {
-      this.setState({isLoading : false});
-    });
+    this.setState({pokemons:matchedPokemons,isLoading:false,next:next});
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value ,isLoading : true});
     if(e.target.value == ''){
       this.props.getPokemonsRequest(0,this.state.limit).then(res => {
-        this.setState({pokemons:res.data.results,next:res.data.next},() => {
-          this.setState({isLoading : false});
-        });;
+        this.setState({pokemons:res.data.results,next:res.data.next,isLoading : false});
       });
     }
     else{
@@ -161,10 +153,11 @@ class PokemonIndex extends React.Component {
             )
           })}
           <br></br><br></br><br></br><br></br>
-          <div className="text-center" style={{margin:'5vh auto'}}>
+          <div className="text-center" style={{position:'fixed',bottom:'0',left:'40%',margin:'5vh auto'}}>
             <button className="btn btn-info btn-lg" disabled={this.state.offset==0 || this.state.pokemons.length == 0} onClick={this.previous}>Previous</button>&nbsp;&nbsp;&nbsp;
             <button className="btn btn-info btn-lg" disabled={this.state.next == null} onClick={this.next}>Next</button>
           </div>
+
         </div>
       </div>
 
