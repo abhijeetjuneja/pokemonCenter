@@ -15,8 +15,6 @@ module.exports = function(app,passport){
     app.use(passport.session());
     app.use(session({secret: 'keyboard cat',resave: false,saveUninitialized: true,cookie: { secure: false }}));
 
-    console.log("passport");
-
     //Serialize user
     passport.serializeUser(function(user, done) {
       console.log("serialize");
@@ -39,7 +37,7 @@ module.exports = function(app,passport){
     passport.use(new GoogleStrategy({
         clientID: '364667810129-vnpctakl7m14q8hr40q6flkbql8u6bim.apps.googleusercontent.com',
         clientSecret: '7qyqKMZhTu9LqZb1SdCrHZzJ',
-        callbackURL: "http://localhost:8000/auth/google/callback"
+        callbackURL: "https://pokemon-center.herokuapp.com/auth/google/callback"
       },
       function(accessToken, refreshToken, profile, done) {
         console.log(profile);
@@ -59,8 +57,8 @@ module.exports = function(app,passport){
 
     //Google callback function
     app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: 'http://localhost:3000/googleerror' }),function(req, res) {
-            res.redirect('http://localhost:3000/google/'+token);
+        passport.authenticate('google', { failureRedirect: '/googleerror' }),function(req, res) {
+            res.redirect('/google/'+token);
     });
 
 

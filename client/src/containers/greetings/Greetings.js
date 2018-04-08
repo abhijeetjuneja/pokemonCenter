@@ -10,7 +10,7 @@ class Greetings extends React.Component {
 
         <SignupButton href='/signup'>Signup</SignupButton>
         <LoginButton href='/login'>Login</LoginButton><br />
-        <Tagline>Welcome to Pokedex !</Tagline>
+        <Tagline>Welcome to Pokemon Center!</Tagline>
       </Welcome>
 
     );
