@@ -35,9 +35,21 @@ export function googleCallbackRequest(url) {
     }
 }
 
-export function googleLoginRequest() {
+export function googleLoginRequest(data) {
     return dispatch => {
-      return axios.get(`/auth/google`);
+      return axios.post(`/api/users/auth/google/login`,data).then(res => {
+        const token = res.data.token;
+        localStorage.setItem('jwtToken', token);
+        setAuthorizationToken(token);
+        dispatch(setCurrentUser(jwtDecode(token)));
+      });;
+    }
+}
+
+
+export function verifyGoogleTokenRequest(token) {
+    return dispatch => {
+      return axios.post(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=`+token);
     }
 }
 

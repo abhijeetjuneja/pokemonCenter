@@ -1,10 +1,12 @@
 import React from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { connect } from 'react-redux';
-import { login,googleLoginRequest } from '../../actions/authActions';
+import { login,verifyGoogleTokenRequest,googleLoginRequest } from '../../actions/authActions';
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
+import { GoogleLogin } from 'react-google-login';
+import { googleLogin } from '../../actions/authActions';
 
 
 function validateInput(data) {
@@ -38,6 +40,7 @@ class LoginForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.google = this.google.bind(this);
+    this.responseGoogle=this.responseGoogle.bind(this);
   }
 
   isValid() {
@@ -61,13 +64,19 @@ class LoginForm extends React.Component {
     }
   }
   google(){
-    this.props.googleLoginRequest().then((res) => {
-      window.location = res.request.responseURL;
-    });
+
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  responseGoogle(response){
+    this.setState({ errors: {}, isLoading: true });
+    this.props.googleLoginRequest(response.profileObj).then(
+      (res) => this.context.router.push('/'),
+      (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+    );
   }
 
   render() {
@@ -105,6 +114,12 @@ class LoginForm extends React.Component {
         <br></br><button disabled={this.state.isLoading || this.state.invalid} onClick={this.google} className="btn btn-warning btn-lg">
           Google +
         </button>
+        <GoogleLogin
+          clientId="364667810129-vnpctakl7m14q8hr40q6flkbql8u6bim.apps.googleusercontent.com"
+          buttonText="Login With Google+"
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+        />
       </div>
 
     );
@@ -113,6 +128,8 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   login: PropTypes.func.isRequired,
+  verifyGoogleTokenRequest: PropTypes.func.isRequired,
+  googleLogin : PropTypes.func.isRequired,
   googleLoginRequest: PropTypes.func.isRequired
 }
 
@@ -120,4 +137,4 @@ LoginForm.contextTypes = {
   router: PropTypes.object.isRequired
 }
 
-export default connect(null, { login,googleLoginRequest })(LoginForm);
+export default connect(null, { login,verifyGoogleTokenRequest,googleLogin,googleLoginRequest })(LoginForm);

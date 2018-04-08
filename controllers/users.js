@@ -85,6 +85,24 @@ module.exports.controllerFunction = function(app) {
       });
     });
 
+    userRouter.post('/auth/google/login', (req, res) => {
+      const { email } = req.body;
+      userModel.findOne({'email':email}).exec((err,user) => {
+        if(user){
+            const token = jwt.sign({
+              id: user.get('_id'),
+              username: user.get('username'),
+              email:user.get('email'),
+              favourites: user.get('favourites')
+            }, config.secret);
+            res.json({ token });
+        }
+        else {
+          res.status(401).json({ errors: { form: 'User not found' } });
+        }
+      });
+    });
+
 
 
 
