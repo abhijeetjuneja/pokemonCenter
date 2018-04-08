@@ -14,32 +14,39 @@ class NavigationBar extends React.Component {
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
-      <ul className="nav navbar-nav navbar-right" style={{backgroundColor:'#4ea8fc',color:'white'}}>
-        <li><a href="/pokemons" style={{backgroundColor:'#4ea8fc',color:'white'}}>Pokemons</a></li>
-        <li><a href="/me"style={{backgroundColor:'#4ea8fc',color:'white'}} >My Profile</a></li>
-        <li><a href="/" style={{backgroundColor:'#4ea8fc',color:'white'}} onClick={this.logout.bind(this)}>Logout</a></li>
+      <ul className="nav navbar-nav navbar-right" style={{backgroundColor:'transparent',color:'white'}}>
+        <li><a href="/pokemons" style={{backgroundColor:'transparent',color:'white'}}>Pokemons</a></li>
+        <li><a href="/me"style={{backgroundColor:'transparent',color:'white'}} >My Profile</a></li>
+        <li><a href="/" style={{backgroundColor:'transparent',color:'white'}} onClick={this.logout.bind(this)}>Logout</a></li>
       </ul>
     );
 
     const guestLinks = (
-      <ul className="nav navbar-nav navbar-right" style={{backgroundColor:'#4ea8fc',color:'white'}}>
-        <li><Link to="/signup" style={{backgroundColor:'#4ea8fc',color:'white'}}>Sign up</Link></li>
-        <li><Link to="/login" style={{backgroundColor:'#4ea8fc',color:'white'}}>Login</Link></li>
+      <ul className="nav navbar-nav navbar-right" style={{backgroundColor:'transparent',color:'white'}}>
+        <li><Link to="/signup" style={{backgroundColor:'transparent',color:'white'}}>Sign up</Link></li>
+        <li><Link to="/login" style={{backgroundColor:'transparent',color:'white'}}>Login</Link></li>
       </ul>
     );
 
     return (
-      <nav className="navbar navbar-default" style={{backgroundColor:'#4ea8fc',color:'white',webkitboxShadow:'0 8px 6px -6px #5184f1',
-    mozboxShadow: '0 8px 6px -6px #5184f1',boxShadow: '0 8px 6px -6px #5184f1'}}>
+      <nav className="navbar navbar-default" style={{border:'none',backgroundColor:'transparent',color:'white',webkitboxShadow:'0 8px 6px -6px white',
+    mozboxShadow: '0 8px 6px -6px white',boxShadow: '0 8px 6px -6px white'}}>
+      <strong>
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link to="/" className="navbar-brand" style={{backgroundColor:'#4ea8fc',color:'white'}}>Pokedex</Link>
+            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+               <span className="sr-only">Toggle navigation</span>
+               <span className="icon-bar"></span>
+               <span className="icon-bar"></span>
+               <span className="icon-bar"></span>
+            </button>
+            <Link to="/" className="navbar-brand" style={{backgroundColor:'transparent',color:'white'}}>Pokemon Center</Link>
           </div>
-
-          <div className="collapse navbar-collapse" style={{backgroundColor:'#4ea8fc',color:'white'}}>
+          <div className="collapse navbar-collapse" id="navigationbar" style={{backgroundColor:'transparent',color:'white'}}>
             { isAuthenticated ? userLinks : guestLinks }
           </div>
         </div>
+        </strong>
       </nav>
     );
   }

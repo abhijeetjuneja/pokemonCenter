@@ -110,7 +110,7 @@ class SignupForm extends React.Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="text-center" style={{backgroundColor :'white', color:'#4ea8fc',minHeight:'70vh',paddingBottom:'5vh',marginTop : '7vh'}}>
+      <div className="text-center" style={{backgroundColor :'white', color:'#4ea8fc',minHeight:'70vh',paddingBottom:'5vh',marginTop : '7vh',webkitboxShadow:'0 2px 6px 6px white',mozboxShadow: '0 2px 6px 6px white', boxShadow: '0 2px 6px 6px white'}}>
         <form onSubmit={this.onSubmit}>
           <div style={{backgroundColor :'#4ea8fc',color:'white',padding:'5px 5px',marginBottom:'5vh'}}>
             <h2>Join Pokemon Center!</h2><br></br>

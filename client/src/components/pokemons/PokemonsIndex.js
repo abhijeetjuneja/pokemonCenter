@@ -79,7 +79,7 @@ class PokemonIndex extends React.Component {
   previous(){
     var offset = this.state.offset;
     offset = offset - this.state.limit;
-    this.setState({offset : offset,isLoading:true});
+    this.setState({offset : offset,isLoading:true,pokemons:[]});
     this.props.getPokemonsRequest(offset,this.state.limit).then(res => {
       this.setState({pokemons:res.data.results,next:res.data.next,isLoading : false});
     });
@@ -88,7 +88,7 @@ class PokemonIndex extends React.Component {
   next(){
     var offset = this.state.offset;
     offset = offset + this.state.limit;
-    this.setState({offset : offset,isLoading:true});
+    this.setState({offset : offset,isLoading:true,pokemons:[]});
     this.props.getPokemonsRequest(offset,this.state.limit).then(res => {
       this.setState({pokemons:res.data.results,next:res.data.next,isLoading : false});
     });
@@ -102,7 +102,7 @@ class PokemonIndex extends React.Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value ,isLoading : true});
+    this.setState({ [e.target.name]: e.target.value ,isLoading : true,pokemons:[]});
     if(e.target.value == ''){
       this.props.getPokemonsRequest(0,this.state.limit).then(res => {
         this.setState({pokemons:res.data.results,next:res.data.next,isLoading : false});
@@ -131,7 +131,7 @@ class PokemonIndex extends React.Component {
     return (
       <div>
         <SearchBox name="searchFilter" value={this.state.searchFilter} onChange={this.onChange} type="text" placeholder="Search.." />
-        <Spinner name="ball-spin-fade-loader" style={{visibility: this.state.isLoading ? 'visible' : 'hidden' , position:'fixed',top:'50%',left:'47%'}} />
+        <Spinner name="ball-spin-fade-loader" color="white" style={{visibility: this.state.isLoading ? 'visible' : 'hidden' , position:'fixed',top:'50%',left:'47%', webkitboxShadow:'0 2px 6px 6px white',mozboxShadow: '0 2px 6px 6px white', boxShadow: '0 2px 6px 6px white'}} />
         <div className="text-center" style={{margin:'30vh 0px',color:'red',visibility: !this.state.isLoading ? 'visible' : 'hidden',display : this.state.pokemons.length == 0 ? 'block' : 'none'}}>
           <h1>Sorry No Pokemons Found !</h1>
         </div>
@@ -154,8 +154,10 @@ class PokemonIndex extends React.Component {
           })}
           <br></br><br></br><br></br><br></br>
           <div className="text-center" style={{position:'fixed',bottom:'0',left:'40%',margin:'5vh auto'}}>
-            <button className="btn btn-info btn-lg" disabled={this.state.offset==0 || this.state.pokemons.length == 0} onClick={this.previous}>Previous</button>&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-info btn-lg" disabled={this.state.next == null} onClick={this.next}>Next</button>
+            <strong>
+            <button style={{backgroundColor:'white',color:'black',border:'2px solid white',filter: 'drop-shadow(8px 8px 8px white)'}} className="btn btn-lg" disabled={this.state.offset==0 || this.state.pokemons.length == 0} onClick={this.previous}>Previous</button>&nbsp;&nbsp;&nbsp;
+            <button style={{backgroundColor:'white',color:'black',border:'2px solid white',filter: 'drop-shadow(8px 8px 8px white)'}} className="btn btn-lg" disabled={this.state.next == null} onClick={this.next}>Next</button>
+            </strong>
           </div>
 
         </div>

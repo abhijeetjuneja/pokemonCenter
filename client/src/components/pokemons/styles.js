@@ -13,8 +13,8 @@ export const PokemonContainer = styled.div`
   margin : 4vh 0px;
   border:5px solid white;
   min-height : 20vh;
-  -webkit-box-shadow:0 8px 6px -6px ${props => props.shadowColor};
-  -moz-box-shadow: 0 8px 6px -6px ${props => props.shadowColor};
-  box-shadow: 0 8px 6px -6px ${props => props.shadowColor};
+  -webkit-box-shadow:0 2px 6px 6px white;
+  -moz-box-shadow: 0 2px 6px 6px white;
+  box-shadow: 0 2px 6px 6px white;
   animation: 10s ${bounce};
 `;

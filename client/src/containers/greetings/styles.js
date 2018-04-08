@@ -18,7 +18,9 @@ export const SignupButton = styled.a`
   margin: 5vh 5vw;
   border-radius: 50%;
   &:hover{
-    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-box-shadow:0 2px 6px 6px white;
+    -moz-box-shadow: 0 2px 6px 6px white;
+    box-shadow: 0 2px 6px 6px white;
     color:white;
     cursor:pointer;
     text-decoration:none;
@@ -39,8 +41,11 @@ export const LoginButton = styled.a`
   font-size: 1.9vmax;
   margin: 5vh 5vw;
   border-radius: 50%;
+
   &:hover{
-    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-box-shadow:0 2px 6px 6px white;
+    -moz-box-shadow: 0 2px 6px 6px white;
+    box-shadow: 0 2px 6px 6px white;
     cursor:pointer;
     color:red;
     text-decoration:none;
@@ -51,15 +56,16 @@ export const LoginButton = styled.a`
 
 export const Ball = styled.img`
   animation: 2s ${rotate};
+  filter: drop-shadow(8px 8px 8px white);
 `;
 
 export const Tagline = styled.h1`
   animation: 2s ${fade};
+  filter: drop-shadow(30px 10px 8px white);
 `;
 
 
 export const Welcome = styled.div`
-  background-color:#7accfd;
   color:white;
   font-weight:bold;
   padding:10vh 0px;

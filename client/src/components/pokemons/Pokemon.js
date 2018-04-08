@@ -61,13 +61,12 @@ class Pokemon extends React.Component {
   componentDidMount(){
     this.setState({favourite : this.props.children[11]});
     this.props.children[3](this.props.children[5]).then((res) => {
-
       this.setState({pokemon : res.data,isLoading : false});
       this.setColor(res.data.types);
     });
   }
   componentWillReceiveProps(nextProps){
-    this.setState({favourite : nextProps.children[11],isLoading : true});
+    this.setState({favourite : nextProps.children[11],isLoading : true,pokemon:{}});
     nextProps.children[3](nextProps.children[5]).then((res) => {
       this.setState({pokemon : res.data,isLoading : false});
       this.setColor(res.data.types);
